@@ -1,0 +1,29 @@
+
+.Screen {
+  width: 800px; 
+  height: 600px;
+  background-image: url("image/bg.png");  
+  margin: 0px auto;
+  position: relative;
+}
+
+.hero {
+  display: inline-block;
+  width: 35px;
+  height: 54px;
+  background-image: url('image/hero.png');
+  background-position: 0px 0px;
+  position: absolute;
+  bottom: 0px;
+  left: 400px;
+}
+
+.enemy {
+  display: inline-block;
+  width: 45px;
+  height: 54px;
+  background-image: url('image/enemy.png');
+  background-position: 0px 0px;
+  position: absolute;
+  top: 0px;
+}
