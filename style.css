@@ -2,7 +2,7 @@
 .screen {
   width: 800px; 
   height: 600px;
-  background-image: url("image/bg.png");  
+  background-image: url("image/background.png");  
   margin: 0px auto;
   position: relative;
 }

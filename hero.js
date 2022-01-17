@@ -1,17 +1,4 @@
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'ArrowLeft') {
-    moveLeft();
-  } else if (event.key === 'ArrowRight') {
-    // 왼쪽
-    moveRight();
-  } // 오른쪽
-});
-
-document.addEventListener('keyup', function(event) {
-  moveStop();
-});
-
-moveLeft = () => {
+const handleKeydownLeft = () => {
   let heroMove = document.getElementsByClassName('hero')[0];
   var x = heroMove.offsetLeft;
 
@@ -21,7 +8,7 @@ moveLeft = () => {
   heroMove.style.backgroundPosition = '-70px 0px';
 };
 
-moveRight = () => {
+const handleKeydownRight = () => {
   let heroMove = document.getElementsByClassName('hero')[0];
   var x = heroMove.offsetLeft;
 
@@ -31,7 +18,19 @@ moveRight = () => {
   heroMove.style.backgroundPosition = '-105px 0px';
 };
 
-moveStop = () => {
+const handleKeydownUp = () => {
   let heroMove = document.getElementsByClassName('hero')[0];
   heroMove.style.backgroundPosition = '0px 0px';
 };
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'ArrowLeft') {
+    handleKeydownLeft();
+  }
+  if (event.key === 'ArrowRight') {
+    handleKeydownRight();
+  }
+  if (event.key === 'ArrowUp') {
+    handleKeydownUp();
+  }
+});
