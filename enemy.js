@@ -1,7 +1,7 @@
 class Enemy {
   constructor(randomX, number) {
     this.randomX = randomX;
-    this.stop = 'false';
+    this.stop = false;
     this.number = number;
   }
 
@@ -14,26 +14,23 @@ class Enemy {
   }
 
   moveEnemy(randomX, i) {
-    let heroMove = document.getElementsByClassName('hero')[0];
-    var x = heroMove.offsetLeft;
-
-    let enemyMove = document.getElementsByClassName('enemy')[i];
-    var y = enemyMove.offsetTop;
+    let hero = document.getElementsByClassName('hero')[0];
+    let enemy = document.getElementsByClassName('enemy')[i];
+    var x = hero.offsetLeft;
+    var y = enemy.offsetTop;
 
     var x1 = x - 35;
     var x2 = x + 35;
 
-    if (y <= 550 && y >= 500 && this.stop === 'false') {
-      if (x1 <= randomX && x2 >= randomX && this.stop === 'false') {
-        enemyMove.style.backgroundPosition = '-45px 0px';
-        this.stop = 'true';
+    if (this.stop === false) {
+      if (y <= 550 && y >= 500 && x1 <= randomX && x2 >= randomX) {
+        enemy.style.backgroundPosition = '-45px 0px';
+        this.stop = true;
       } else if (y < 550) {
-        enemyMove.style.top = y + 1 + 'px';
+        enemy.style.top = y + 1 + 'px';
+      } else {
+        this.stop = true;
       }
-    } else if (this.stop === 'false') {
-      enemyMove.style.top = y + 1 + 'px';
-    } else if (y > 550 && y < 560) {
-      this.stop = 'true';
     }
   }
 }
@@ -47,8 +44,12 @@ window.onload = async function() {
     let randomX = Math.floor(Math.random() * 760);
     const enemy = new Enemy(randomX, i);
     enemy.createEnemy();
-    setInterval(function() {
+
+    const moved = setInterval(function() {
       enemy.moveEnemy(randomX, enemy.number);
+      if (enemy.stop) {
+        clearInterval(moved);
+      }
     }, 10);
     await delay(1000);
   }
